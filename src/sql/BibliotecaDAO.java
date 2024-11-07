@@ -3,6 +3,7 @@ package sql;
 import java.sql.Connection;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 
 public class BibliotecaDAO {
     public void prestarLibro(String carnet, int idLibro, String fechaPrestamo, String fechaDevolucion) throws SQLException {
@@ -54,4 +55,19 @@ public class BibliotecaDAO {
             stmt.executeUpdate();
         }
     }
+
+    public boolean validarLoginColaborador(String email, String contraseña) throws SQLException {
+        String query = "{CALL sp_validar_login_colaborador(?, ?, ?)}";
+        try (Connection connection = DatabaseConnection.getConnection();
+             CallableStatement stmt = connection.prepareCall(query)) {
+            stmt.setString(1, email);
+            stmt.setString(2, contraseña);
+
+            stmt.registerOutParameter(3, Types.BOOLEAN);
+            stmt.execute();
+
+            return stmt.getBoolean(3);
+        }
+    }
 }
+
