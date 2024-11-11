@@ -26,22 +26,22 @@ public class MainWindow extends JFrame {
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
         // Panel de botones
-        JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 10, 10));
+        JPanel buttonPanel = new JPanel(new GridLayout(6, 1, 10, 10)); // Cambiar a 6 filas para agregar un botón más
 
-        // Tati aca hice la Creación de botones con iconos y estilos, los iconos no estan agregados, se lo dejo a usted
-        JButton addStudentButton = createButton("Agregar Estudiante", "add_icon.png");
+        // Creación de botones con iconos y estilos
         JButton btnPrestarEquipo = createButton("Prestar Equipo", "equipment_icon.png");
         JButton btnDevolverEquipo = createButton("Devolver Equipo", "return_equipment_icon.png");
+        JButton btnVerPrestamosActivos = createButton("Ver Préstamos Activos", "active_loans_icon.png"); // Nuevo botón
 
         // Configuración de acciones
-        addStudentButton.addActionListener(e -> abrirVentanaAgregarEstudiante());
         btnPrestarEquipo.addActionListener(e -> abrirVentanaPrestarEquipo());
         btnDevolverEquipo.addActionListener(e -> abrirVentanaDevolverEquipo());
+        btnVerPrestamosActivos.addActionListener(e -> abrirVentanaPrestamosActivos()); // Acción para ver préstamos activos
 
         // Añadir botones al panel
-        buttonPanel.add(addStudentButton);
         buttonPanel.add(btnPrestarEquipo);
         buttonPanel.add(btnDevolverEquipo);
+        buttonPanel.add(btnVerPrestamosActivos); // Añadir el botón de préstamos activos
 
         // Añadir el panel de botones al panel principal
         mainPanel.add(buttonPanel, BorderLayout.CENTER);
@@ -55,10 +55,11 @@ public class MainWindow extends JFrame {
         add(mainPanel);
     }
 
+    // Método para crear botones con iconos y estilo
     private JButton createButton(String text, String iconPath) {
         JButton button = new JButton(text);
         button.setFont(new Font("Arial", Font.PLAIN, 14));
-        button.setIcon(new ImageIcon(iconPath)); // Tati aca se coloca el icono en la misma carpeta o ajusta la ruta
+        button.setIcon(new ImageIcon(iconPath)); // Ajustar la ruta de los iconos según sea necesario
         button.setFocusPainted(false);
         button.setBackground(new Color(0, 123, 255));
         button.setForeground(Color.WHITE);
@@ -69,16 +70,18 @@ public class MainWindow extends JFrame {
         return button;
     }
 
-    private void abrirVentanaAgregarEstudiante() {
-        new AddStudentWindow(bibliotecaDAO).setVisible(true);
-    }
-
+    // Métodos para abrir ventanas específicas
     private void abrirVentanaPrestarEquipo() {
         new PrestarEquipoWindow(bibliotecaDAO).setVisible(true);
     }
 
     private void abrirVentanaDevolverEquipo() {
         new DevolverEquipoWindow(bibliotecaDAO).setVisible(true);
+    }
+
+    private void abrirVentanaPrestamosActivos() {
+        String carnet = "123456789"; // Aquí deberías obtener el carnet del usuario actual (por ejemplo, desde el login o sesión)
+        new PrestamoActivoWindow(carnet).setVisible(true);
     }
 
     public static void main(String[] args) {

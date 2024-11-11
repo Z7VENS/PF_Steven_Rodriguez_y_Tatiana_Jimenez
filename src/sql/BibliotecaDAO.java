@@ -1,6 +1,7 @@
 package sql;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -66,10 +67,19 @@ public class BibliotecaDAO {
             stmt.registerOutParameter(3, Types.TINYINT); // Cambiar a Types.TINYINT
             stmt.execute();
     
-            return stmt.getInt(3) == 1; // Cambiar a getInt y verificar si es igual a 1
+                return stmt.getInt(3) == 1; // Cambiar a getInt y verificar si es igual a 1
+            }
         }
-    
+
+         // Método para obtener los préstamos activos de un usuario
+    public ResultSet obtenerPrestamosActivos(String carnet) throws SQLException {
+        String query = "{CALL sp_mostrar_prestamos_activos_usuario(?)}";
         
+        try (Connection connection = DatabaseConnection.getConnection();
+             CallableStatement stmt = connection.prepareCall(query)) {
+            stmt.setString(1, carnet);
+            return stmt.executeQuery(); // Retorna el ResultSet
+        }
     }
 }
 
