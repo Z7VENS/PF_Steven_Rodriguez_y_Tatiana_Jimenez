@@ -80,7 +80,7 @@ public List<String> obtenerPrestamosActivos(String carnet) {
     ResultSet rs = null;
 
     try {
-        // Obtener la conexión a la base de datos
+        
         Connection connection = DatabaseConnection.getConnection();
 
         // Llamar al SP 'obtener_prestamos_activos' pasando el carnet
@@ -90,9 +90,9 @@ public List<String> obtenerPrestamosActivos(String carnet) {
 
         // Procesar los resultados del SP
         while (rs.next()) {
-            String libro = rs.getString("id_libro");
+           
             String equipo = rs.getString("id_equipo");
-            prestamosActivos.add("Libro: " + libro + ", Equipo: " + equipo); // Personaliza el formato si es necesario
+            prestamosActivos.add( " ID Equipo: " + equipo); 
         }
     } catch (SQLException e) {
         e.printStackTrace(); // Manejo de errores
