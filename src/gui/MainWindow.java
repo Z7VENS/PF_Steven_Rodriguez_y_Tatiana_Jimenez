@@ -80,11 +80,10 @@ public class MainWindow extends JFrame {
     }
 
     private void abrirVentanaPrestamosActivos() {
-        String carnet = "123456789"; // Aquí deberías obtener el carnet del usuario actual (por ejemplo, desde el login o sesión)
-        new PrestamoActivoWindow(carnet).setVisible(true);
+        new PrestamoActivoWindow().setVisible(true);
     }
-
     public static void main(String[] args) {
+
         SwingUtilities.invokeLater(() -> new MainWindow().setVisible(true));
     }
 }

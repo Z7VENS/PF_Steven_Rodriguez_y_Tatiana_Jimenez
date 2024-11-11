@@ -73,14 +73,16 @@ public class BibliotecaDAO {
             }
         }
 
-         // Método para obtener los préstamos activos de un usuario
-      // Método para obtener los préstamos activos de un usuario
-    public List<String> obtenerPrestamosActivos(String carnet) {
+        // Método para obtener los préstamos activos de un usuario
+public List<String> obtenerPrestamosActivos(String carnet) {
     List<String> prestamosActivos = new ArrayList<>();
     CallableStatement stmt = null;
     ResultSet rs = null;
 
-    try (Connection connection = DatabaseConnection.getConnection()) {  // Asegúrate de obtener la conexión aquí
+    try {
+        // Obtener la conexión a la base de datos
+        Connection connection = DatabaseConnection.getConnection();
+
         // Llamar al SP 'obtener_prestamos_activos' pasando el carnet
         stmt = connection.prepareCall("{call obtener_prestamos_activos(?)}");
         stmt.setString(1, carnet); // Asignar el carnet al parámetro
@@ -88,8 +90,9 @@ public class BibliotecaDAO {
 
         // Procesar los resultados del SP
         while (rs.next()) {
-            String equipo = rs.getString("equipo");
-            prestamosActivos.add(equipo); // Aquí, agregar los resultados a la lista
+            String libro = rs.getString("id_libro");
+            String equipo = rs.getString("id_equipo");
+            prestamosActivos.add("Libro: " + libro + ", Equipo: " + equipo); // Personaliza el formato si es necesario
         }
     } catch (SQLException e) {
         e.printStackTrace(); // Manejo de errores
