@@ -73,7 +73,9 @@ public class LoginWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             String email = emailField.getText().trim();
             String contraseña = new String(passwordField.getPassword()).trim();
-
+            
+            System.out.println("Intentando login con email: " + email + " y contraseña: " + contraseña);
+    
             try {
                 if (bibliotecaDAO.validarLoginColaborador(email, contraseña)) {
                     JOptionPane.showMessageDialog(LoginWindow.this, "Login exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -83,9 +85,11 @@ public class LoginWindow extends JFrame {
                     JOptionPane.showMessageDialog(LoginWindow.this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(LoginWindow.this, "Error al validar el login", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(LoginWindow.this, "Error al validar el login: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+    
+        
     }
 
     public static void main(String[] args) {

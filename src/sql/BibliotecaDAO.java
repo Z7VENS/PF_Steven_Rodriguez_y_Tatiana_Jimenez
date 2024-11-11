@@ -62,12 +62,14 @@ public class BibliotecaDAO {
              CallableStatement stmt = connection.prepareCall(query)) {
             stmt.setString(1, email);
             stmt.setString(2, contraseña);
-
-            stmt.registerOutParameter(3, Types.BOOLEAN);
+    
+            stmt.registerOutParameter(3, Types.TINYINT); // Cambiar a Types.TINYINT
             stmt.execute();
-
-            return stmt.getBoolean(3);
+    
+            return stmt.getInt(3) == 1; // Cambiar a getInt y verificar si es igual a 1
         }
+    
+        
     }
 }
 

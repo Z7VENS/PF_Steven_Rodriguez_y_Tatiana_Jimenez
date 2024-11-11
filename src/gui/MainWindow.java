@@ -30,22 +30,16 @@ public class MainWindow extends JFrame {
 
         // Tati aca hice la Creación de botones con iconos y estilos, los iconos no estan agregados, se lo dejo a usted
         JButton addStudentButton = createButton("Agregar Estudiante", "add_icon.png");
-        JButton btnPrestarLibro = createButton("Prestar Libro", "borrow_icon.png");
-        JButton btnDevolverLibro = createButton("Devolver Libro", "return_icon.png");
         JButton btnPrestarEquipo = createButton("Prestar Equipo", "equipment_icon.png");
         JButton btnDevolverEquipo = createButton("Devolver Equipo", "return_equipment_icon.png");
 
         // Configuración de acciones
         addStudentButton.addActionListener(e -> abrirVentanaAgregarEstudiante());
-        btnPrestarLibro.addActionListener(e -> abrirVentanaPrestarLibro());
-        btnDevolverLibro.addActionListener(e -> abrirVentanaDevolverLibro());
         btnPrestarEquipo.addActionListener(e -> abrirVentanaPrestarEquipo());
         btnDevolverEquipo.addActionListener(e -> abrirVentanaDevolverEquipo());
 
         // Añadir botones al panel
         buttonPanel.add(addStudentButton);
-        buttonPanel.add(btnPrestarLibro);
-        buttonPanel.add(btnDevolverLibro);
         buttonPanel.add(btnPrestarEquipo);
         buttonPanel.add(btnDevolverEquipo);
 
@@ -77,14 +71,6 @@ public class MainWindow extends JFrame {
 
     private void abrirVentanaAgregarEstudiante() {
         new AddStudentWindow(bibliotecaDAO).setVisible(true);
-    }
-
-    private void abrirVentanaPrestarLibro() {
-        new PrestarLibroWindow(bibliotecaDAO).setVisible(true);
-    }
-
-    private void abrirVentanaDevolverLibro() {
-        new DevolverLibroWindow(bibliotecaDAO).setVisible(true);
     }
 
     private void abrirVentanaPrestarEquipo() {
