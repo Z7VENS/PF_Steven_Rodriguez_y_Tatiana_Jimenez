@@ -12,24 +12,27 @@ public class DevolverEquipoWindow extends JFrame {
     public DevolverEquipoWindow(BibliotecaDAO dao) {
         this.bibliotecaDAO = dao;
         setTitle("Devolver Equipo");
-        setSize(350, 180);
+        setSize(600, 200);  
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Panel principal con márgenes
-        JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+        
+        JPanel mainPanel = new BackgroundPanel("C:\\Users\\Lenovo\\OneDrive\\Documents\\ProyectosGit\\PF_Steven_Rodriguez_y_Tatiana_Jimenez\\src\\gui\\BEFT_01.jpeg");
+        mainPanel.setLayout(new BorderLayout(10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Título
+      
         JLabel titleLabel = new JLabel("Formulario de Devolución de Equipo", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        titleLabel.setForeground(Color.WHITE); 
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Panel de entrada de datos
+      
         JPanel inputPanel = new JPanel(new GridLayout(1, 2, 10, 10));
-
+        inputPanel.setOpaque(false);  
         JLabel idPrestamoLabel = new JLabel("ID Préstamo:");
         idPrestamoLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        idPrestamoLabel.setForeground(Color.WHITE); 
         idPrestamoField = new JTextField();
         idPrestamoField.setFont(new Font("Arial", Font.PLAIN, 14));
         inputPanel.add(idPrestamoLabel);
@@ -37,20 +40,21 @@ public class DevolverEquipoWindow extends JFrame {
 
         mainPanel.add(inputPanel, BorderLayout.CENTER);
 
-        // Botón de devolver con estilo
+       
         JButton btnDevolver = new JButton("Devolver Equipo");
         btnDevolver.setFont(new Font("Arial", Font.PLAIN, 14));
-        btnDevolver.setBackground(new Color(220, 53, 69));
-        btnDevolver.setForeground(Color.WHITE);
+        btnDevolver.setBackground(new Color(17, 80, 124 )); 
+        btnDevolver.setForeground(Color.white); 
         btnDevolver.setFocusPainted(false);
         btnDevolver.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(Color.DARK_GRAY),
+                BorderFactory.createLineBorder(Color.white),
                 BorderFactory.createEmptyBorder(5, 15, 5, 15)
         ));
         btnDevolver.addActionListener(e -> devolverEquipo());
 
-        // Panel inferior para el botón
+       
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false);  
         buttonPanel.add(btnDevolver);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -60,7 +64,14 @@ public class DevolverEquipoWindow extends JFrame {
     private void devolverEquipo() {
         String idPrestamoText = idPrestamoField.getText();
 
-        // Validación del campo
+       
+        UIManager.put("OptionPane.background", new Color(18, 43, 116));
+        UIManager.put("Panel.background", new Color(18, 43, 116));
+        UIManager.put("OptionPane.messageForeground", Color.WHITE);
+        UIManager.put("Button.background", new Color(142, 190, 223));
+        UIManager.put("Button.foreground", Color.BLACK);
+
+       
         if (idPrestamoText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor ingrese el ID del préstamo.", "Campo Incompleto", JOptionPane.WARNING_MESSAGE);
             return;
@@ -76,5 +87,38 @@ public class DevolverEquipoWindow extends JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al devolver equipo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+
+       
+        UIManager.put("OptionPane.background", null);
+        UIManager.put("Panel.background", null);
+        UIManager.put("OptionPane.messageForeground", null);
+        UIManager.put("Button.background", null);
+        UIManager.put("Button.foreground", null);
+    }
+
+    
+    class BackgroundPanel extends JPanel {
+        private Image backgroundImage;
+
+        public BackgroundPanel(String imagePath) {
+            this.backgroundImage = new ImageIcon(imagePath).getImage();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+
+           
+            g2d.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+
+            
+            g2d.setColor(new Color(0, 0, 0, 170)); 
+            g2d.fillRect(0, 0, getWidth(), getHeight());  
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new DevolverEquipoWindow(new BibliotecaDAO()).setVisible(true));
     }
 }
