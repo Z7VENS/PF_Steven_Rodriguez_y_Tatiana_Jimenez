@@ -17,7 +17,7 @@ public class DevolverEquipoWindow extends JFrame {
         setResizable(false);
 
         
-        JPanel mainPanel = new BackgroundPanel("C:\\Users\\Lenovo\\OneDrive\\Documents\\ProyectosGit\\PF_Steven_Rodriguez_y_Tatiana_Jimenez\\src\\gui\\BEFT_01.jpeg");
+        JPanel mainPanel = new BackgroundPanel("C:\\Users\\imzzz\\OneDrive\\Escritorio\\biblioteca-app\\biblioteca-app\\src\\resources\\BEFT_01.jpeg");
         mainPanel.setLayout(new BorderLayout(10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
