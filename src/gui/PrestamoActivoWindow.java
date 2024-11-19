@@ -23,12 +23,11 @@ public class PrestamoActivoWindow extends JFrame {
         setContentPane(new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\IMG_6533.jpg")); // Ajusta la ruta de la imagen
         setLayout(new BorderLayout());
 
-        // Panel principal con márgenes y diseño de capa transparente
+        
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
         mainPanel.setOpaque(false);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Título centrado y personalizado
         JLabel titleLabel = new JLabel("Consulta de Préstamos Activos", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
         titleLabel.setForeground(Color.WHITE);
@@ -44,53 +43,53 @@ public class PrestamoActivoWindow extends JFrame {
         carnetField = new JTextField(15);
         carnetField.setFont(new Font("Arial", Font.PLAIN, 14));
 
-        // Botón para cargar préstamos con ícono
+       
         JButton btnCargarPrestamos = createButtonWithIcon("Cargar Préstamos", "C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image6.png");
         btnCargarPrestamos.setBackground(new Color(16, 88, 138 ));
         inputPanel.add(carnetLabel);
         inputPanel.add(carnetField);
-        inputPanel.add(new JLabel()); // Espacio vacío
+        inputPanel.add(new JLabel()); 
         inputPanel.add(btnCargarPrestamos);
 
-        // Lista de préstamos activos con efecto de transparencia
+       
         listModel = new DefaultListModel<>();
         JList<String> prestamosList = new JList<>(listModel);
         prestamosList.setFont(new Font("Arial", Font.PLAIN, 14));
-        prestamosList.setOpaque(false); // Configuración para permitir transparencia
+        prestamosList.setOpaque(false); 
         prestamosList.setForeground(Color.DARK_GRAY);
         
-        // Panel contenedor para la lista con transparencia
+      
         JPanel transparentPanel = new JPanel(new BorderLayout()) {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
-                g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f)); // Transparencia al fondo
-                g2d.setColor(new Color(255, 255, 255, 200)); // Color de fondo semitransparente
+                g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f)); 
+                g2d.setColor(new Color(255, 255, 255, 200)); 
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
         };
-        transparentPanel.setOpaque(false); // Para la transparencia del contenedor
+        transparentPanel.setOpaque(false); 
         transparentPanel.add(new JScrollPane(prestamosList), BorderLayout.CENTER);
         transparentPanel.setPreferredSize(new Dimension(350, 200));
 
-        // Panel inferior con botón de cerrar
+       
         JPanel bottomPanel = new JPanel();
         bottomPanel.setOpaque(false);
         
-        // Botón de cerrar con ícono
+     
         JButton btnCerrar = createButtonWithIcon("Cerrar", "C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image5.png");
       btnCerrar.setBackground((Color.red));
         btnCerrar.addActionListener(e -> dispose());
         
         bottomPanel.add(btnCerrar);
 
-        // Acción para cargar los préstamos activos
+        
         btnCargarPrestamos.addActionListener(e -> cargarPrestamos());
 
-        // Añadir todo al frame
+      
         mainPanel.add(inputPanel, BorderLayout.NORTH);
-        mainPanel.add(transparentPanel, BorderLayout.CENTER); // Agregar el panel transparente aquí
+        mainPanel.add(transparentPanel, BorderLayout.CENTER); 
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         add(mainPanel);
@@ -100,13 +99,13 @@ public class PrestamoActivoWindow extends JFrame {
         String carnet = carnetField.getText().trim();
         if (!carnet.isEmpty()) {
             List<String> prestamosActivos = bibliotecaDAO.obtenerPrestamosActivos(carnet);
-            listModel.clear(); // Limpiar la lista antes de agregar los nuevos préstamos
+            listModel.clear(); 
 
             if (prestamosActivos.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No se encontraron préstamos activos para el carnet ingresado.", "Información", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 for (String prestamo : prestamosActivos) {
-                    listModel.addElement(prestamo); // Agregar cada préstamo a la lista
+                    listModel.addElement(prestamo); 
                 }
             }
         } else {
@@ -114,7 +113,7 @@ public class PrestamoActivoWindow extends JFrame {
         }
     }
 
-    // Método para crear botones con texto e ícono
+    
     private JButton createButtonWithIcon(String text, String iconPath) {
         JButton button = new JButton(text);
         button.setFont(new Font("Arial", Font.BOLD, 14));
@@ -122,13 +121,11 @@ public class PrestamoActivoWindow extends JFrame {
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
 
-        // Configurar el ícono
+       
         ImageIcon icon = new ImageIcon(iconPath);
-        Image scaledIcon = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Ajustar el tamaño del ícono
-        button.setIcon(new ImageIcon(scaledIcon));
-        button.setHorizontalTextPosition(SwingConstants.RIGHT); // Colocar el texto a la derecha del ícono
-        button.setIconTextGap(10); // Espacio entre ícono y texto
-
+        Image scaledIcon = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); 
+        button.setHorizontalTextPosition(SwingConstants.RIGHT); 
+        button.setIconTextGap(10); 
         return button;
     }
 

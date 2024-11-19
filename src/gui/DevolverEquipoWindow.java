@@ -38,7 +38,7 @@ public class DevolverEquipoWindow extends JFrame {
 
         mainPanel.add(inputPanel, BorderLayout.CENTER);
 
-        // Crear el botón y agregar un ícono al lado izquierdo del texto
+       
         JButton btnDevolver = new JButton("Devolver Equipo");
         btnDevolver.setFont(new Font("Arial", Font.PLAIN, 14));
         btnDevolver.setBackground(new Color(17, 80, 124)); 
@@ -49,12 +49,11 @@ public class DevolverEquipoWindow extends JFrame {
                 BorderFactory.createEmptyBorder(5, 15, 5, 15)
         ));
 
-        // Agregar icono al botón
+       
         ImageIcon icon = new ImageIcon("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image2.png");
         Image scaledIcon = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         btnDevolver.setIcon(new ImageIcon(scaledIcon));
-        btnDevolver.setHorizontalTextPosition(SwingConstants.RIGHT); // Coloca el texto a la derecha del ícono
-
+        btnDevolver.setHorizontalTextPosition(SwingConstants.RIGHT); 
         btnDevolver.addActionListener(e -> devolverEquipo());
 
         JPanel buttonPanel = new JPanel();

@@ -30,7 +30,7 @@ public class LoginWindow extends JFrame {
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         headerPanel.setOpaque(false);
 
-        // Logo principal
+    
         ImageIcon logoIcon = new ImageIcon("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\logoucr1.png");
         Image scaledImage = logoIcon.getImage().getScaledInstance(200, 100, Image.SCALE_SMOOTH);
         logoIcon = new ImageIcon(scaledImage);
@@ -40,7 +40,7 @@ public class LoginWindow extends JFrame {
 
         headerPanel.add(Box.createVerticalStrut(10));
 
-        // Título
+    
         JLabel titleLabel = new JLabel("Acceso al Sistema", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 40));
         titleLabel.setForeground(Color.WHITE);
@@ -49,7 +49,7 @@ public class LoginWindow extends JFrame {
 
         headerPanel.add(Box.createVerticalStrut(10));
 
-        // Ícono debajo del título (ajustado a un tamaño mediano)
+      
         ImageIcon belowIcon = new ImageIcon("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image1.png");
         Image scaledBelowIcon = belowIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH); // Tamaño mediano
         belowIcon = new ImageIcon(scaledBelowIcon);
@@ -72,16 +72,16 @@ public class LoginWindow extends JFrame {
         emailLabel.setForeground(Color.WHITE);
         
         emailField = new JTextField();
-        emailField.setPreferredSize(new Dimension(300, 40));  // Aumento del tamaño del campo de texto
-        emailField.setFont(new Font("Arial", Font.PLAIN, 18)); // Aumento del tamaño de la fuente
+        emailField.setPreferredSize(new Dimension(300, 40));  
+        emailField.setFont(new Font("Arial", Font.PLAIN, 18)); 
 
         JLabel passwordLabel = new JLabel("Contraseña:");
         passwordLabel.setFont(new Font("Arial", Font.BOLD, 18));
         passwordLabel.setForeground(Color.WHITE);
         
         passwordField = new JPasswordField();
-        passwordField.setPreferredSize(new Dimension(300, 40));  // Aumento del tamaño del campo de texto
-        passwordField.setFont(new Font("Arial", Font.PLAIN, 18)); // Aumento del tamaño de la fuente
+        passwordField.setPreferredSize(new Dimension(300, 40));  
+        passwordField.setFont(new Font("Arial", Font.PLAIN, 18)); 
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -105,13 +105,13 @@ public class LoginWindow extends JFrame {
 
         mainPanel.add(inputPanel, BorderLayout.CENTER);
 
-        // Panel de botón
+       
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
 
         JButton loginButton = new JButton("Iniciar Sesión");
 
-        // Ícono del botón
+       
         ImageIcon loginIcon = new ImageIcon("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image.png");
         Image scaledLoginIcon = loginIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         loginIcon = new ImageIcon(scaledLoginIcon);

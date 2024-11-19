@@ -19,18 +19,18 @@ public class PrestarEquipoWindow extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Crear panel con imagen de fondo
+       
         JPanel mainPanel = new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\imagen5.jpg");
         mainPanel.setLayout(new BorderLayout(10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Título
+       
         JLabel titleLabel = new JLabel("Formulario de Préstamo de Equipo", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
         titleLabel.setForeground(Color.WHITE);
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Panel de entrada de datos
+      
         JPanel inputPanel = new JPanel(new GridLayout(4, 2, 10, 10));
         inputPanel.setOpaque(false);
 
@@ -41,7 +41,7 @@ public class PrestarEquipoWindow extends JFrame {
 
         mainPanel.add(inputPanel, BorderLayout.CENTER);
 
-        // Botón de prestar con ícono redimensionado
+       
         JButton btnPrestar = new JButton("Prestar Equipo");
         btnPrestar.setFont(new Font("Arial", Font.PLAIN, 14));
         btnPrestar.setBackground(new Color(16, 138, 53));
@@ -52,14 +52,14 @@ public class PrestarEquipoWindow extends JFrame {
                 BorderFactory.createEmptyBorder(5, 15, 5, 15)
         ));
 
-        // Cargar y redimensionar el ícono
+       
         ImageIcon icon = new ImageIcon("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image7.png"); // Cambia la ruta según tu archivo de ícono
-        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Redimensionar a 20x20 píxeles
+        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); 
         btnPrestar.setIcon(new ImageIcon(img));
 
         btnPrestar.addActionListener(e -> prestarEquipo());
 
-        // Panel inferior para el botón
+    
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
         buttonPanel.add(btnPrestar);
@@ -103,7 +103,7 @@ public class PrestarEquipoWindow extends JFrame {
         }
     }
 
-    // Clase personalizada para mostrar una imagen de fondo con transparencia
+    
     class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
@@ -116,11 +116,11 @@ public class PrestarEquipoWindow extends JFrame {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g;
 
-            // Dibuja la imagen de fondo
+         
             g2d.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
-            // Aplicar un filtro oscuro sobre la imagen (semi-transparente)
-            Color overlayColor = new Color(0, 0, 0, 150); // Negro con 150 de opacidad
+            
+            Color overlayColor = new Color(0, 0, 0, 150); 
             g2d.setColor(overlayColor);
             g2d.fillRect(0, 0, getWidth(), getHeight());
         }
