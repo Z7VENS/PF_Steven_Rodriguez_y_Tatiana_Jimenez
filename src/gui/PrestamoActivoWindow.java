@@ -20,7 +20,7 @@ public class PrestamoActivoWindow extends JFrame {
         setResizable(false);
 
        
-        setContentPane(new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\IMG_6533.jpg")); // Ajusta la ruta de la imagen
+        setContentPane(new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\IMG_6533.jpg")); 
         setLayout(new BorderLayout());
 
         
