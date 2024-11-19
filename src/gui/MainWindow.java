@@ -17,9 +17,6 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Habilitar tooltips globalmente
-        ToolTipManager.sharedInstance().setEnabled(true);
-
         // Panel principal con imagen de fondo
         JPanel mainPanel = new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\imagen222.jpg");
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Alineación vertical para todo el panel
