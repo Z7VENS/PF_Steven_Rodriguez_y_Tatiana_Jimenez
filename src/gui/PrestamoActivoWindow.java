@@ -10,6 +10,7 @@ public class PrestamoActivoWindow extends JFrame {
     private JTextField carnetField;
     private DefaultListModel<String> listModel;
 
+    @SuppressWarnings("unused")
     public PrestamoActivoWindow() {
         this.bibliotecaDAO = new BibliotecaDAO();
 
@@ -19,7 +20,7 @@ public class PrestamoActivoWindow extends JFrame {
         setResizable(false);
 
         // Establecer el fondo con una imagen personalizada
-        setContentPane(new BackgroundPanel("C:\\Users\\imzzz\\OneDrive\\Escritorio\\biblioteca-app\\biblioteca-app\\src\\resources\\exterior.jpeg")); // Ajusta la ruta de la imagen
+        setContentPane(new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\IMG_6533.jpg")); // Ajusta la ruta de la imagen
         setLayout(new BorderLayout());
 
         // Panel principal con márgenes y diseño de capa transparente
@@ -43,12 +44,9 @@ public class PrestamoActivoWindow extends JFrame {
         carnetField = new JTextField(15);
         carnetField.setFont(new Font("Arial", Font.PLAIN, 14));
 
-        JButton btnCargarPrestamos = new JButton("Cargar Préstamos");
-        btnCargarPrestamos.setFont(new Font("Arial", Font.BOLD, 14));
-        btnCargarPrestamos.setBackground(new Color(0, 123, 255));
-        btnCargarPrestamos.setForeground(Color.WHITE);
-        btnCargarPrestamos.setFocusPainted(false);
-
+        // Botón para cargar préstamos con ícono
+        JButton btnCargarPrestamos = createButtonWithIcon("Cargar Préstamos", "C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image6.png");
+        btnCargarPrestamos.setBackground(new Color(16, 88, 138 ));
         inputPanel.add(carnetLabel);
         inputPanel.add(carnetField);
         inputPanel.add(new JLabel()); // Espacio vacío
@@ -79,12 +77,12 @@ public class PrestamoActivoWindow extends JFrame {
         // Panel inferior con botón de cerrar
         JPanel bottomPanel = new JPanel();
         bottomPanel.setOpaque(false);
-        JButton btnCerrar = new JButton("Cerrar");
-        btnCerrar.setFont(new Font("Arial", Font.BOLD, 14));
-        btnCerrar.setBackground(new Color(220, 53, 69));
-        btnCerrar.setForeground(Color.WHITE);
-        btnCerrar.setFocusPainted(false);
+        
+        // Botón de cerrar con ícono
+        JButton btnCerrar = createButtonWithIcon("Cerrar", "C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image5.png");
+      btnCerrar.setBackground((Color.red));
         btnCerrar.addActionListener(e -> dispose());
+        
         bottomPanel.add(btnCerrar);
 
         // Acción para cargar los préstamos activos
@@ -114,6 +112,24 @@ public class PrestamoActivoWindow extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Por favor ingrese un carnet válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    // Método para crear botones con texto e ícono
+    private JButton createButtonWithIcon(String text, String iconPath) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setBackground(new Color(0, 123, 255));
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+
+        // Configurar el ícono
+        ImageIcon icon = new ImageIcon(iconPath);
+        Image scaledIcon = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Ajustar el tamaño del ícono
+        button.setIcon(new ImageIcon(scaledIcon));
+        button.setHorizontalTextPosition(SwingConstants.RIGHT); // Colocar el texto a la derecha del ícono
+        button.setIconTextGap(10); // Espacio entre ícono y texto
+
+        return button;
     }
 
     public static void main(String[] args) {

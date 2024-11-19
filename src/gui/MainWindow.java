@@ -4,12 +4,11 @@ import sql.BibliotecaDAO;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
     private BibliotecaDAO bibliotecaDAO;
 
+    @SuppressWarnings("unused")
     public MainWindow() {
         bibliotecaDAO = new BibliotecaDAO();
         setTitle("Sistema de Gestión de Biblioteca");
@@ -18,8 +17,11 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
+        // Habilitar tooltips globalmente
+        ToolTipManager.sharedInstance().setEnabled(true);
+
         // Panel principal con imagen de fondo
-        JPanel mainPanel = new BackgroundPanel("C:\\Users\\imzzz\\OneDrive\\Escritorio\\biblioteca-app\\biblioteca-app\\src\\resources\\imagen222.jpeg");
+        JPanel mainPanel = new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\imagen222.jpg");
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Alineación vertical para todo el panel
         mainPanel.setBorder(BorderFactory.createEmptyBorder(0, 40, 40, 40)); // Reducir el margen superior
 
@@ -34,7 +36,7 @@ public class MainWindow extends JFrame {
         titlePanel.add(titleLabel);
 
         // Logo debajo del título
-        ImageIcon logoIcon = new ImageIcon("C:\\Users\\imzzz\\OneDrive\\Escritorio\\biblioteca-app\\biblioteca-app\\src\\resources\\Logoucr.jpeg");
+        ImageIcon logoIcon = new ImageIcon("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\logoucr.png");
         Image scaledLogo = logoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         JLabel logoLabel = new JLabel(new ImageIcon(scaledLogo));
         logoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -56,10 +58,15 @@ public class MainWindow extends JFrame {
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); // Establecemos BoxLayout en vertical
         buttonPanel.setOpaque(false); // Hacerlo transparente
 
-        // Crear botones con fondo azul, letras blancas y borde celeste
-        JButton btnPrestarEquipo = createButton("Prestar Equipo");
-        JButton btnDevolverEquipo = createButton("Devolver Equipo");
-        JButton btnVerPrestamosActivos = createButton("Ver Préstamos Activos");
+        // Crear botones con íconos
+        JButton btnPrestarEquipo = createButtonWithIcon("     Prestar Equipo", "C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image3.png");
+        JButton btnDevolverEquipo = createButtonWithIcon("   Devolver Equipo", "C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image2.png");
+        JButton btnVerPrestamosActivos = createButtonWithIcon("     Ver Préstamos ", "C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\image4.png");
+
+        // Añadir tooltips para los botones
+        btnPrestarEquipo.setToolTipText("Presiona para prestar un equipo.");
+        btnDevolverEquipo.setToolTipText("Presiona para devolver un equipo.");
+        btnVerPrestamosActivos.setToolTipText("Presiona para ver los préstamos activos.");
 
         // Agregar botones al panel
         buttonPanel.add(btnPrestarEquipo);
@@ -96,30 +103,13 @@ public class MainWindow extends JFrame {
         add(mainPanel);
 
         // Acciones de los botones
-        btnPrestarEquipo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                abrirVentanaPrestarEquipo();
-            }
-        });
-
-        btnDevolverEquipo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                abrirVentanaDevolverEquipo();
-            }
-        });
-
-        btnVerPrestamosActivos.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                abrirVentanaPrestamosActivos();
-            }
-        });
+        btnPrestarEquipo.addActionListener(e -> abrirVentanaPrestarEquipo());
+        btnDevolverEquipo.addActionListener(e -> abrirVentanaDevolverEquipo());
+        btnVerPrestamosActivos.addActionListener(e -> abrirVentanaPrestamosActivos());
     }
 
-    // Crear botón con fondo azul, letras blancas y borde celeste
-    private JButton createButton(String text) {
+    // Método para crear botones con texto e ícono
+    private JButton createButtonWithIcon(String text, String iconPath) {
         JButton button = new JButton(text);
         button.setFont(new Font("Arial", Font.PLAIN, 14)); // Fuente más grande para texto
         button.setBackground(Color.blue); // Fondo azul
@@ -129,12 +119,14 @@ public class MainWindow extends JFrame {
         button.setMinimumSize(new Dimension(200, 50));  // Tamaño mínimo igual
         button.setMaximumSize(new Dimension(200, 50)); // Tamaño máximo igual
         button.setAlignmentX(Component.CENTER_ALIGNMENT); // Aseguramos que el texto esté centrado
-
-        // Quitar el borde predeterminado
-        button.setBorder(BorderFactory.createEmptyBorder());
-
-        // Establecer un borde tradicional de color celeste
         button.setBorder(BorderFactory.createLineBorder(Color.white, 2)); // Borde celeste
+
+        // Configurar el ícono
+        ImageIcon icon = new ImageIcon(iconPath);
+        Image scaledIcon = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        button.setIcon(new ImageIcon(scaledIcon));
+        button.setHorizontalTextPosition(SwingConstants.RIGHT); // Texto a la derecha del ícono
+        button.setIconTextGap(10); // Espacio entre ícono y texto
 
         return button;
     }
@@ -175,7 +167,7 @@ class BackgroundPanel extends JPanel {
         g2d.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
         // Dibuja un filtro blanco con 50% de transparencia (alpha = 128)
-        Color semiTransparentWhite = new Color(255, 255, 255, 60); // Blanco con 50% de opacidad
+        Color semiTransparentWhite = new Color(255, 255, 255, 50); // Blanco con 50% de opacidad
         g2d.setColor(semiTransparentWhite);
         g2d.fillRect(0, 0, getWidth(), getHeight()); // Aplica el filtro sobre la imagen
     }
@@ -209,4 +201,4 @@ class TitleLabel extends JLabel {
         g2d.setColor(textColor);
         g2d.drawString(getText(), getWidth() / 2 - g2d.getFontMetrics().stringWidth(getText()) / 2 + 1, getHeight() / 2 + fontSize / 2 - 3);
     }
-    }
+}
