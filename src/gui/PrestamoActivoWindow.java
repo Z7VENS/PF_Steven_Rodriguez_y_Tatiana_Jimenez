@@ -19,8 +19,8 @@ public class PrestamoActivoWindow extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Establecer el fondo con una imagen personalizada
-        setContentPane(new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\IMG_6533.jpg")); // Ajusta la ruta de la imagen
+       
+        setContentPane(new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\IMG_6533.jpg")); 
         setLayout(new BorderLayout());
 
         
@@ -28,6 +28,7 @@ public class PrestamoActivoWindow extends JFrame {
         mainPanel.setOpaque(false);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
+      
         JLabel titleLabel = new JLabel("Consulta de Préstamos Activos", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
         titleLabel.setForeground(Color.WHITE);
@@ -48,7 +49,7 @@ public class PrestamoActivoWindow extends JFrame {
         btnCargarPrestamos.setBackground(new Color(16, 88, 138 ));
         inputPanel.add(carnetLabel);
         inputPanel.add(carnetField);
-        inputPanel.add(new JLabel()); 
+        inputPanel.add(new JLabel());
         inputPanel.add(btnCargarPrestamos);
 
        
@@ -124,8 +125,10 @@ public class PrestamoActivoWindow extends JFrame {
        
         ImageIcon icon = new ImageIcon(iconPath);
         Image scaledIcon = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); 
+        button.setIcon(new ImageIcon(scaledIcon));
         button.setHorizontalTextPosition(SwingConstants.RIGHT); 
         button.setIconTextGap(10); 
+
         return button;
     }
 
@@ -145,7 +148,7 @@ public class PrestamoActivoWindow extends JFrame {
             super.paintComponent(g);
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
-            // Crear una capa semitransparente para resaltar los elementos
+           
             Graphics2D g2d = (Graphics2D) g;
             g2d.setColor(new Color(0, 0, 0, 90));
             g2d.fillRect(0, 0, getWidth(), getHeight());
