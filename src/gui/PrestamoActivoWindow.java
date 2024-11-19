@@ -19,16 +19,16 @@ public class PrestamoActivoWindow extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Establecer el fondo con una imagen personalizada
+       
         setContentPane(new BackgroundPanel("C:\\Users\\Lenovo\\Downloads\\biblioteca-app\\biblioteca-app\\biblioteca-app\\src\\gui\\IMG_6533.jpg")); // Ajusta la ruta de la imagen
         setLayout(new BorderLayout());
 
-        // Panel principal con márgenes y diseño de capa transparente
+        
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
         mainPanel.setOpaque(false);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Título centrado y personalizado
+      
         JLabel titleLabel = new JLabel("Consulta de Préstamos Activos", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
         titleLabel.setForeground(Color.WHITE);
@@ -49,7 +49,7 @@ public class PrestamoActivoWindow extends JFrame {
         btnCargarPrestamos.setBackground(new Color(16, 88, 138 ));
         inputPanel.add(carnetLabel);
         inputPanel.add(carnetField);
-        inputPanel.add(new JLabel()); // Espacio vacío
+        inputPanel.add(new JLabel());
         inputPanel.add(btnCargarPrestamos);
 
        
@@ -148,7 +148,7 @@ public class PrestamoActivoWindow extends JFrame {
             super.paintComponent(g);
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 
-            // Crear una capa semitransparente para resaltar los elementos
+           
             Graphics2D g2d = (Graphics2D) g;
             g2d.setColor(new Color(0, 0, 0, 90));
             g2d.fillRect(0, 0, getWidth(), getHeight());
